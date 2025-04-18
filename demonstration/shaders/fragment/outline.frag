@@ -1,6 +1,5 @@
 /*
-  (C) 2019 David Lettier
-  lettier.com
+  (C) 2019 David Lettier lettier.com
 */
 
 #version 150
