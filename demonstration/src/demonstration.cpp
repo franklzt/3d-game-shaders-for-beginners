@@ -1006,25 +1006,40 @@ int main(int argc, char* argv[])
 
     std::vector<std::tuple<std::string, PT(GraphicsOutput), int>> bufferArray =
     {
-        std::make_tuple("Positions 0", geometryBuffer0, 0), std::make_tuple("Normals 0", geometryBuffer0, 1),
-        std::make_tuple("Positions 1", geometryBuffer1, 0), std::make_tuple("Normals 1", geometryBuffer1, 1),
-        std::make_tuple("Reflection Mask", geometryBuffer1, 2), std::make_tuple("Refraction Mask", geometryBuffer1, 3),
-        std::make_tuple("Foam Mask", geometryBuffer1, 4), std::make_tuple("Positions 2", geometryBuffer2, 0),
-        std::make_tuple("Smoke Mask", geometryBuffer2, 1), std::make_tuple("SSAO", ssaoBuffer, 0),
-        std::make_tuple("SSAO Blur", ssaoBlurBuffer, 0), std::make_tuple("Refraction UV", refractionUvBuffer, 0),
-        std::make_tuple("Refraction", refractionBuffer, 0), std::make_tuple("Reflection UV", reflectionUvBuffer, 0),
+        std::make_tuple("Positions 0", geometryBuffer0, 0),
+        std::make_tuple("Normals 0", geometryBuffer0, 1),
+        std::make_tuple("Positions 1", geometryBuffer1, 0),
+        std::make_tuple("Normals 1", geometryBuffer1, 1),
+        std::make_tuple("Reflection Mask", geometryBuffer1, 2),
+        std::make_tuple("Refraction Mask", geometryBuffer1, 3),
+        std::make_tuple("Foam Mask", geometryBuffer1, 4),
+        std::make_tuple("Positions 2", geometryBuffer2, 0),
+        std::make_tuple("Smoke Mask", geometryBuffer2, 1),
+        std::make_tuple("SSAO", ssaoBuffer, 0),
+        std::make_tuple("SSAO Blur", ssaoBlurBuffer, 0),
+        std::make_tuple("Refraction UV", refractionUvBuffer, 0),
+        std::make_tuple("Refraction", refractionBuffer, 0),
+        std::make_tuple("Reflection UV", reflectionUvBuffer, 0),
         std::make_tuple("Reflection Color", reflectionColorBuffer, 0),
         std::make_tuple("Reflection Blur", reflectionColorBlurBuffer, 0),
-        std::make_tuple("Reflection", reflectionBuffer, 0), std::make_tuple("Foam", foamBuffer, 0),
-        std::make_tuple("Base", baseBuffer, 0), std::make_tuple("Specular", baseBuffer, 1),
-        std::make_tuple("Base Combine", baseCombineBuffer, 0), std::make_tuple("Painterly", painterlyBuffer, 0),
-        std::make_tuple("Posterize", posterizeBuffer, 0), std::make_tuple("Bloom", bloomBuffer, 0),
-        std::make_tuple("Outline", outlineBuffer, 0), std::make_tuple("Fog", fogBuffer, 0),
-        std::make_tuple("Scene Combine", sceneCombineBuffer, 0), std::make_tuple("Out of Focus", outOfFocusBuffer, 0),
+        std::make_tuple("Reflection", reflectionBuffer, 0),
+        std::make_tuple("Foam", foamBuffer, 0),
+        std::make_tuple("Base", baseBuffer, 0),
+        std::make_tuple("Specular", baseBuffer, 1),
+        std::make_tuple("Base Combine", baseCombineBuffer, 0),
+        std::make_tuple("Painterly", painterlyBuffer, 0),
+        std::make_tuple("Posterize", posterizeBuffer, 0),
+        std::make_tuple("Bloom", bloomBuffer, 0),
+        std::make_tuple("Outline", outlineBuffer, 0),
+        std::make_tuple("Fog", fogBuffer, 0),
+        std::make_tuple("Scene Combine", sceneCombineBuffer, 0),
+        std::make_tuple("Out of Focus", outOfFocusBuffer, 0),
         std::make_tuple("Dilation", dilatedOutOfFocusBuffer, 0),
         std::make_tuple("Depth of Field Blur", depthOfFieldBuffer, 1),
-        std::make_tuple("Depth of Field", depthOfFieldBuffer, 0), std::make_tuple("Pixelize", pixelizeBuffer, 0),
-        std::make_tuple("Motion Blur", motionBlurBuffer, 0), std::make_tuple("Film Grain", filmGrainBuffer, 0),
+        std::make_tuple("Depth of Field", depthOfFieldBuffer, 0),
+        std::make_tuple("Pixelize", pixelizeBuffer, 0),
+        std::make_tuple("Motion Blur", motionBlurBuffer, 0),
+        std::make_tuple("Film Grain", filmGrainBuffer, 0),
         std::make_tuple("Lookup Table", lookupTableBuffer, 0),
         std::make_tuple("Gamma Correction", gammaCorrectionBuffer, 0),
         std::make_tuple("Chromatic Aberration", chromaticAberrationBuffer, 0)
@@ -2186,9 +2201,7 @@ FramebufferTexture generateFramebufferTexture
     return result;
 }
 
-void showBuffer
-(NodePath render2d
- , NodePath statusNP
+void showBuffer(NodePath render2d, NodePath statusNP
  , std::tuple<std::string, PT(GraphicsOutput), int> bufferTexture
  , bool alpha
 )
@@ -2205,10 +2218,7 @@ void showBuffer
     nodePath.set_y(0);
 
     if (alpha)
-        nodePath.set_transparency
-        (TransparencyAttrib::Mode::M_alpha
-        );
-
+        nodePath.set_transparency(TransparencyAttrib::Mode::M_alpha);
     statusNP.reparent_to(nodePath);
 }
 

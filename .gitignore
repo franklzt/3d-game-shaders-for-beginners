@@ -29,3 +29,4 @@ demonstration/Chapter1.vcxproj.filters
 demonstration/cmake_install.cmake
 demonstration/ZERO_CHECK.vcxproj
 demonstration/ZERO_CHECK.vcxproj.filters
+Panda3D-1.10.14-x64/*
