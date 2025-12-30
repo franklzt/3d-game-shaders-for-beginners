@@ -55,15 +55,7 @@ void main() {
 
   if (position.a <= 0.0) { position.y = far; }
 
-  float depth =
-    clamp
-      (   1.0
-        - ( (far - position.y)
-          / (far - near)
-          )
-      , 0.0
-      , 1.0
-      );
+  float depth =clamp(1.0 - ( (far - position.y)/ (far - near)), 0.0, 1.0);
 
   float separation = mix(maxSeparation, minSeparation, depth);
   float count      = 1.0;
@@ -71,47 +63,28 @@ void main() {
 
   for (int i = -size; i <= size; ++i) {
     for (int j = -size; j <= size; ++j) {
-      texCoord =
-          (vec2(i, j) * separation + (fragCoord + noise))
-        / texSize;
+      texCoord =(vec2(i, j) * separation + (fragCoord + noise)) / texSize;
 
-      positionTemp =
-        texture
-          ( positionTexture
-          , texCoord
-          );
+      positionTemp = texture( positionTexture, texCoord);
 
       if (positionTemp.y <= 0.0) { positionTemp.y = far; }
 
       mx = max(mx, abs(position.y - positionTemp.y));
 
-      depthOfField =
-        max
-          ( texture
-              ( depthOfFieldTexture
-              , texCoord
-              ).r
-          , depthOfField
-          );
+      depthOfField =max( texture( depthOfFieldTexture, texCoord).r, depthOfField);
 
-      fog +=
-        texture
-          ( fogTexture
-          , texCoord
-          ).a;
+      fog +=texture( fogTexture, texCoord).a;
 
       count += 1.0;
     }
   }
 
-        depthOfField = 1.0 - clamp(depthOfField, 0.0, 1.0);
-        fog          = 1.0 - clamp(fog / count,  0.0, 1.0);
-  float diff         = smoothstep(minDistance, maxDistance, mx) * depthOfField * fog;
-
-  texCoord = fragCoord / texSize;
-
-  vec3 lineColor  = texture(colorTexture, texCoord).rgb;
-       lineColor *= colorModifier;
+    depthOfField = 1.0 - clamp(depthOfField, 0.0, 1.0);
+    fog          = 1.0 - clamp(fog / count,  0.0, 1.0);
+    float diff   = smoothstep(minDistance, maxDistance, mx) * depthOfField * fog;
+    texCoord = fragCoord / texSize;
+    vec3 lineColor  = texture(colorTexture, texCoord).rgb;
+    lineColor *= colorModifier;
 
   fragColor.rgb = mix(color.rgb, lineColor, clamp(diff, 0.0, 1.0));
   fragColor.a   = 1.0;
