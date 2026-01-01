@@ -2023,7 +2023,7 @@ PTA_LVecBase3f generateSsaoNoise(int numberOfNoise)
 
 	for (int i = 0; i < numberOfNoise; ++i)
 	{
-		LVecBase3f noise =VecBase3f(randomFloats(generator) * 2.0 - 1.0
+		LVecBase3f noise =LVecBase3f(randomFloats(generator) * 2.0 - 1.0
 			 , randomFloats(generator) * 2.0 - 1.0
 			 , 0.0
 			);
