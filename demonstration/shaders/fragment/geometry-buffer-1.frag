@@ -51,30 +51,12 @@ void main() {
   vec3 normal;
 
   if (normalMapsEnabled.x == 1) {
-    vec4 normalTex =
-      texture
-        ( p3d_Texture1
-        , vec2
-            ( normalCoord.x + flowMapsEnabled.x * flow.x * osg_FrameTime
-            , normalCoord.y + flowMapsEnabled.y * flow.y * osg_FrameTime
-            )
+    vec4 normalTex =texture( p3d_Texture1, vec2( normalCoord.x + flowMapsEnabled.x * flow.x * osg_FrameTime,
+                 normalCoord.y + flowMapsEnabled.y * flow.y * osg_FrameTime)
         );
 
-    normal =
-      normalize
-        ( normalTex.rgb
-        * 2.0
-        - 1.0
-        );
-    normal =
-      normalize
-        ( mat3
-            ( tangent
-            , binormal
-            , vertexNormal
-            )
-        * normal
-        );
+    normal =normalize( normalTex.rgb* 2.0- 1.0);
+    normal =normalize( mat3( tangent, binormal, vertexNormal)* normal);
   } else {
     normal = normalize(vertexNormal);
   }

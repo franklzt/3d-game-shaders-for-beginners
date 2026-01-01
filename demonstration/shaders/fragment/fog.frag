@@ -50,31 +50,15 @@ void main() {
     position.xyz = mix(position0.xyz, position1.xyz, smokeMask.r);
   }
 
-  float random =
-    fract
-      ( 10000
-      * sin
-          (
-            ( gl_FragCoord.x
-            * 104729
-            + gl_FragCoord.y
-            * 7639
-            )
-          * pi.y
-          )
-      );
+  float random =fract( 10000* sin(( gl_FragCoord.x* 104729+ gl_FragCoord.y* 7639)* pi.y));
 
   vec4 backgroundColor0     = backgroundColor0;
   vec4 backgroundColor1     = backgroundColor1;
        backgroundColor0.rgb = pow(backgroundColor0.rgb, vec3(gamma.x));
        backgroundColor1.rgb = pow(backgroundColor1.rgb, vec3(gamma.x));
 
-  vec4 color =
-    mix
-      ( backgroundColor0
-      , backgroundColor1
-      , 1.0 - clamp(random * 0.1 + texCoord.y, 0.0, 1.0)
-      );
+  vec4 color =mix( backgroundColor0, backgroundColor1,
+                1.0 - clamp(random * 0.1 + texCoord.y, 0.0, 1.0));
 
   float sunPosition = max(0.2, -1 * sin(sunPosition.x * pi.y));
 
@@ -82,12 +66,7 @@ void main() {
   color.b    = mix(color.b + 0.05, color.b, sunPosition);
 
   float intensity =
-    clamp
-      (   (position.y - near)
-        / (far        - near)
-      , fogMin
-      , fogMax
-      );
+    clamp((position.y - near)/ (far - near), fogMin, fogMax);
 
   fragColor = vec4(color.rgb, intensity);
 }

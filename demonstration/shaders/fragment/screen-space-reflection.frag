@@ -80,12 +80,10 @@ void main() {
     uv.xy      = frag / texSize;
     positionTo = texture(positionTexture, uv.xy);
 
-    search1 =
-      mix
-        ( (frag.y - startFrag.y) / deltaY
-        , (frag.x - startFrag.x) / deltaX
-        , useX
-        );
+    search1 =mix( (frag.y - startFrag.y) / deltaY,
+                  (frag.x - startFrag.x) / deltaX,
+                  useX
+    );
 
     search1 = clamp(search1, 0.0, 1.0);
 
@@ -122,30 +120,9 @@ void main() {
     }
   }
 
-  float visibility =
-      hit1
-    * positionTo.w
-    * ( 1
-      - max
-         ( dot(-unitPositionFrom, pivot)
-         , 0
-         )
-      )
-    * ( 1
-      - clamp
-          ( depth / thickness
-          , 0
-          , 1
-          )
-      )
-    * ( 1
-      - clamp
-          (   length(positionTo - positionFrom)
-            / maxDistance
-          , 0
-          , 1
-          )
-      )
+  float visibility = hit1* positionTo.w* ( 1- max( dot(-unitPositionFrom, pivot), 0))
+    * ( 1- clamp( depth / thickness, 0, 1))
+    * ( 1- clamp( length(positionTo - positionFrom)/ maxDistance, 0, 1))
     * (uv.x < 0 || uv.x > 1 ? 0 : 1)
     * (uv.y < 0 || uv.y > 1 ? 0 : 1);
 

@@ -21,29 +21,12 @@ out vec4 positionOut;
 out vec4 normalOut;
 
 void main() {
-  vec4 normalTex =
-    texture
-      ( p3d_Texture1
-      , normalCoord
-      );
+  vec4 normalTex =texture( p3d_Texture1, normalCoord);
 
   vec3 normal;
   if (normalMapsEnabled.x == 1) {
-    normal =
-      normalize
-        ( normalTex.rgb
-        * 2.0
-        - 1.0
-        );
-    normal =
-      normalize
-        ( mat3
-            ( tangent
-            , binormal
-            , vertexNormal
-            )
-        * normal
-        );
+    normal =normalize( normalTex.rgb* 2.0- 1.0);
+    normal =normalize( mat3( tangent, binormal, vertexNormal)* normal);
   } else {
     normal = normalize(vertexNormal);
   }

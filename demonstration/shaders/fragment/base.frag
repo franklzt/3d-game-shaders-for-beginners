@@ -24,43 +24,36 @@ uniform sampler2D flowTexture;
 uniform sampler2D ssaoBlurTexture;
 
 uniform struct
-  { vec4 ambient
-  ; vec4 diffuse
-  ; vec4 emission
-  ; vec3 specular
-  ; float shininess
-  ;
+  { 
+    vec4 ambient; 
+    vec4 diffuse; 
+    vec4 emission;
+    vec3 specular; 
+    float shininess;
   } p3d_Material;
 
 uniform struct
-  { vec4 ambient
-  ;
+  { 
+    vec4 ambient;
   } p3d_LightModel;
 
 uniform struct p3d_LightSourceParameters
-  { vec4 color
-
-  ; vec4 ambient
-  ; vec4 diffuse
-  ; vec4 specular
-
-  ; vec4 position
-
-  ; vec3  spotDirection
-  ; float spotExponent
-  ; float spotCutoff
-  ; float spotCosCutoff
-
-  ; float constantAttenuation
-  ; float linearAttenuation
-  ; float quadraticAttenuation
-
-  ; vec3 attenuation
-
-  ; sampler2DShadow shadowMap
-
-  ; mat4 shadowViewMatrix
-  ;
+  {
+     vec4 color; 
+     vec4 ambient; 
+     vec4 diffuse; 
+     vec4 specular; 
+     vec4 position; 
+     vec3  spotDirection; 
+    float spotExponent; 
+    float spotCutoff; 
+    float spotCosCutoff; 
+    float constantAttenuation; 
+    float linearAttenuation; 
+    float quadraticAttenuation; 
+    vec3 attenuation; 
+    sampler2DShadow shadowMap; 
+    mat4 shadowViewMatrix;
   } p3d_LightSource[NUMBER_OF_LIGHTS];
 
 uniform vec2 normalMapsEnabled;

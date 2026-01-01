@@ -8,6 +8,8 @@ uniform mat4 p3d_ModelViewMatrix;
 in vec4 p3d_Vertex;
 
 void main() {
-  vertexPosition = p3d_ModelViewMatrix * p3d_Vertex;
-  gl_Position = vertexPosition;
+
+  gl_Position = p3d_ModelViewMatrix * p3d_Vertex;
+  //vertexPosition = p3d_ModelViewMatrix * p3d_Vertex;
+  //gl_Position = vertexPosition;
 }

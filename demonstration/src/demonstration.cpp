@@ -109,8 +109,7 @@ void setSoundOn(PT(AudioSound) sound);
 
 void setSoundState(PT(AudioSound) sound, bool on);
 
-void updateAudoManager
-(NodePath sceneRootNP, NodePath cameraNP);
+void updateAudoManager(NodePath sceneRootNP, NodePath cameraNP);
 
 LVecBase3f calculateCameraPosition
 (double radius, double phi, double theta, LVecBase3 cameraLookAt);
@@ -260,8 +259,7 @@ int main(int argc, char* argv[])
 
 	load_prc_file("panda3d-prc-file.prc");
 
-	PT(TextFont)
-	font = FontPool::load_font("fonts/font.ttf");
+	PT(TextFont)font = FontPool::load_font("fonts/font.ttf");
 
 	std::vector<PT(AudioSound)> sounds =
 	{
@@ -286,21 +284,15 @@ int main(int argc, char* argv[])
 	framework.open_framework(argc, argv);
 	framework.set_window_title("3D Game Shaders For Beginners By David Lettier");
 
-	PT(WindowFramework)
-	window = framework.open_window();
-	PT(GraphicsWindow)
-	graphicsWindow = window->get_graphics_window();
-	PT(GraphicsOutput)
-	graphicsOutput = window->get_graphics_output();
-	PT(GraphicsStateGuardian)
-	graphicsStateGuardian = graphicsOutput->get_gsg();
-	PT(GraphicsEngine)
-	graphicsEngine = graphicsStateGuardian->get_engine();
+	PT(WindowFramework)window = framework.open_window();
+	PT(GraphicsWindow)graphicsWindow = window->get_graphics_window();
+	PT(GraphicsOutput)graphicsOutput = window->get_graphics_output();
+	PT(GraphicsStateGuardian)graphicsStateGuardian = graphicsOutput->get_gsg();
+	PT(GraphicsEngine)graphicsEngine = graphicsStateGuardian->get_engine();
 
 	window->enable_keyboard();
 
-	PT(DisplayRegion)
-	displayRegion3d = window->get_display_region_3d();
+	PT(DisplayRegion)displayRegion3d = window->get_display_region_3d();
 	displayRegion3d->set_clear_color_active(true);
 	displayRegion3d->set_clear_depth_active(true);
 	displayRegion3d->set_clear_stencil_active(true);
@@ -371,8 +363,7 @@ int main(int argc, char* argv[])
 			  | PartGroup::HMF_ok_anim_extra
 	);
 
-	auto_bind
-	(bannerNP.node(), bannerAnimationCollection,
+	auto_bind(bannerNP.node(), bannerAnimationCollection,
 	 PartGroup::HMF_ok_wrong_root_name
 	 | PartGroup::HMF_ok_part_extra
 	 | PartGroup::HMF_ok_anim_extra
@@ -380,64 +371,35 @@ int main(int argc, char* argv[])
 
 	generateLights(render, false);
 
-	PT(Shader)
-	discardShader = loadShader("discard", "discard");
-	PT(Shader)
-	baseShader = loadShader("base", "base");
-	PT(Shader)
-	geometryBufferShader0 = loadShader("base", "geometry-buffer-0");
-	PT(Shader)
-	geometryBufferShader1 = loadShader("base", "geometry-buffer-1");
-	PT(Shader)
-	geometryBufferShader2 = loadShader("base", "geometry-buffer-2");
-	PT(Shader)
-	foamShader = loadShader("basic", "foam");
-	PT(Shader)
-	fogShader = loadShader("basic", "fog");
-	PT(Shader)
-	boxBlurShader = loadShader("basic", "box-blur");
-	PT(Shader)
-	motionBlurShader = loadShader("basic", "motion-blur");
-	PT(Shader)
-	kuwaharaFilterShader = loadShader("basic", "kuwahara-filter");
-	PT(Shader)
-	dilationShader = loadShader("basic", "dilation");
-	PT(Shader)
-	sharpenShader = loadShader("basic", "sharpen");
-	PT(Shader)
-	outlineShader = loadShader("basic", "outline");
-	PT(Shader)
-	bloomShader = loadShader("basic", "bloom");
-	PT(Shader)
-	ssaoShader = loadShader("basic", "ssao");
-	PT(Shader)
-	screenSpaceRefractionShader = loadShader("basic", "screen-space-refraction");
-	PT(Shader)
-	screenSpaceReflectionShader = loadShader("basic", "screen-space-reflection");
-	PT(Shader)
-	refractionShader = loadShader("basic", "refraction");
-	PT(Shader)
-	reflectionColorShader = loadShader("basic", "reflection-color");
-	PT(Shader)
-	reflectionShader = loadShader("basic", "reflection");
-	PT(Shader)
-	baseCombineShader = loadShader("basic", "base-combine");
-	PT(Shader)
-	sceneCombineShader = loadShader("basic", "scene-combine");
-	PT(Shader)
-	depthOfFieldShader = loadShader("basic", "depth-of-field");
-	PT(Shader)
-	posterizeShader = loadShader("basic", "posterize");
-	PT(Shader)
-	pixelizeShader = loadShader("basic", "pixelize");
-	PT(Shader)
-	filmGrainShader = loadShader("basic", "film-grain");
-	PT(Shader)
-	lookupTableShader = loadShader("basic", "lookup-table");
-	PT(Shader)
-	gammaCorrectionShader = loadShader("basic", "gamma-correction");
-	PT(Shader)
-	chromaticAberrationShader = loadShader("basic", "chromatic-aberration");
+	PT(Shader)discardShader = loadShader("discard", "discard");
+	PT(Shader)baseShader = loadShader("base", "base");
+	PT(Shader)geometryBufferShader0 = loadShader("base", "geometry-buffer-0");
+	PT(Shader)geometryBufferShader1 = loadShader("base", "geometry-buffer-1");
+	PT(Shader)geometryBufferShader2 = loadShader("base", "geometry-buffer-2");
+	PT(Shader)foamShader = loadShader("basic", "foam");
+	PT(Shader)fogShader = loadShader("basic", "fog");
+	PT(Shader)boxBlurShader = loadShader("basic", "box-blur");
+	PT(Shader)motionBlurShader = loadShader("basic", "motion-blur");
+	PT(Shader)kuwaharaFilterShader = loadShader("basic", "kuwahara-filter");
+	PT(Shader)dilationShader = loadShader("basic", "dilation");
+	PT(Shader)sharpenShader = loadShader("basic", "sharpen");
+	PT(Shader)outlineShader = loadShader("basic", "outline");
+	PT(Shader)bloomShader = loadShader("basic", "bloom");
+	PT(Shader)ssaoShader = loadShader("basic", "ssao");
+	PT(Shader)screenSpaceRefractionShader = loadShader("basic", "screen-space-refraction");
+	PT(Shader)screenSpaceReflectionShader = loadShader("basic", "screen-space-reflection");
+	PT(Shader)refractionShader = loadShader("basic", "refraction");
+	PT(Shader)reflectionColorShader = loadShader("basic", "reflection-color");
+	PT(Shader)reflectionShader = loadShader("basic", "reflection");
+	PT(Shader)baseCombineShader = loadShader("basic", "base-combine");
+	PT(Shader)sceneCombineShader = loadShader("basic", "scene-combine");
+	PT(Shader)depthOfFieldShader = loadShader("basic", "depth-of-field");
+	PT(Shader)posterizeShader = loadShader("basic", "posterize");
+	PT(Shader)pixelizeShader = loadShader("basic", "pixelize");
+	PT(Shader)filmGrainShader = loadShader("basic", "film-grain");
+	PT(Shader)lookupTableShader = loadShader("basic", "lookup-table");
+	PT(Shader)gammaCorrectionShader = loadShader("basic", "gamma-correction");
+	PT(Shader)chromaticAberrationShader = loadShader("basic", "chromatic-aberration");
 
 	NodePath mainCameraNP = NodePath("mainCamera");
 	mainCameraNP.set_shader(discardShader);
@@ -471,12 +433,10 @@ int main(int argc, char* argv[])
 	framebufferTextureArguments.name = "geometry0";
 
 	FramebufferTexture geometryFramebufferTexture0 = generateFramebufferTexture(framebufferTextureArguments);
-	PT(Camera)
-	geometryCamera0 = geometryFramebufferTexture0.camera;
+	PT(Camera)geometryCamera0 = geometryFramebufferTexture0.camera;
 	NodePath geometryNP0 = geometryFramebufferTexture0.shaderNP;
 
-	PT(GraphicsOutput)
-	geometryBuffer0 = geometryFramebufferTexture0.buffer;
+	PT(GraphicsOutput)geometryBuffer0 = geometryFramebufferTexture0.buffer;
 	geometryBuffer0->add_render_texture(NULL
 										, GraphicsOutput::RTM_bind_or_copy
 										, GraphicsOutput::RTP_aux_rgba_0
@@ -488,12 +448,9 @@ int main(int argc, char* argv[])
 	geometryNP0.set_shader_input("normalMapsEnabled", normalMapsEnabled);
 	geometryCamera0->set_initial_state(geometryNP0.get_state());
 	geometryCamera0->set_camera_mask(BitMask32::bit(1));
-	PT(Texture)
-	positionTexture0 = geometryBuffer0->get_texture(0);
-	PT(Texture)
-	normalTexture0 = geometryBuffer0->get_texture(1);
-	PT(Lens)
-	geometryCameraLens0 = geometryCamera0->get_lens();
+	PT(Texture)positionTexture0 = geometryBuffer0->get_texture(0);
+	PT(Texture)normalTexture0 = geometryBuffer0->get_texture(1);
+	PT(Lens)geometryCameraLens0 = geometryCamera0->get_lens();
 
 	waterNP.hide(BitMask32::bit(1));
 	smokeNP.hide(BitMask32::bit(1));
@@ -556,10 +513,8 @@ int main(int argc, char* argv[])
 	framebufferTextureArguments.name = "geometry2";
 
 	FramebufferTexture geometryFramebufferTexture2 = generateFramebufferTexture(framebufferTextureArguments);
-	PT(GraphicsOutput)
-	geometryBuffer2 = geometryFramebufferTexture2.buffer;
-	PT(Camera)
-	geometryCamera2 = geometryFramebufferTexture2.camera;
+	PT(GraphicsOutput)geometryBuffer2 = geometryFramebufferTexture2.buffer;
+	PT(Camera)geometryCamera2 = geometryFramebufferTexture2.camera;
 	NodePath geometryNP2 = geometryFramebufferTexture2.shaderNP;
 	geometryBuffer2->add_render_texture(NULL
 										, GraphicsOutput::RTM_bind_or_copy
@@ -1104,8 +1059,7 @@ int main(int argc, char* argv[])
 	int now = then;
 	int keyTime = now;
 
-	auto beforeFrame =
-		[&]() -> void
+	auto beforeFrame =[&]() -> void
 	{
 		WindowProperties windowProperties = graphicsWindow->get_properties();
 		if (windowProperties.get_minimized())
@@ -1388,8 +1342,7 @@ int main(int argc, char* argv[])
 				statusText = "Reset";
 			}
 
-			auto toggleStatus =
-				[&](LVecBase2f enabled, std::string effect) -> void
+			auto toggleStatus =	[&](LVecBase2f enabled, std::string effect) -> void
 			{
 				statusAlpha = 1.0;
 				if (enabled[0] == 1)
@@ -1844,8 +1797,7 @@ void generateLights(NodePath render, bool showLights)
 	NodePath ambientLightNP = render.attach_new_node(ambientLight);
 	render.set_light(ambientLightNP);
 
-	PT(DirectionalLight)
-	sunlight = new DirectionalLight("sunlight");
+	PT(DirectionalLight)sunlight = new DirectionalLight("sunlight");
 	sunlight->set_color(sunlightColor1);
 	sunlight->set_shadow_caster(true, SHADOW_SIZE, SHADOW_SIZE);
 	sunlight->get_lens()->set_film_size(35, 35);
@@ -1855,8 +1807,7 @@ void generateLights(NodePath render, bool showLights)
 	sunlightNP.set_name("sunlight");
 	render.set_light(sunlightNP);
 
-	PT(DirectionalLight)
-	moonlight = new DirectionalLight("moonlight");
+	PT(DirectionalLight)moonlight = new DirectionalLight("moonlight");
 	moonlight->set_color(moonlightColor1);
 	moonlight->set_shadow_caster(true, SHADOW_SIZE, SHADOW_SIZE);
 	moonlight->get_lens()->set_film_size(35, 35);
@@ -1880,35 +1831,11 @@ void generateLights(NodePath render, bool showLights)
 	moonlightNP.set_pos(0, -17.5, 0);
 	moonlightPivotNP.set_hpr(135, 160, 0);
 
-	generateWindowLight("windowLight"
-	 , render
-	 , LVecBase3
-	 (1.5
-	  , 2.49
-	  , 7.9
-	 )
-	 , showLights
-	);
+	generateWindowLight("windowLight", render, LVecBase3(1.5, 2.49, 7.9), showLights);
 	
-	generateWindowLight("windowLight1"
-	 , render
-	 , LVecBase3
-	 (3.5
-	  , 2.49
-	  , 7.9
-	 )
-	 , showLights
-	);
+	generateWindowLight("windowLight1", render , LVecBase3 (3.5 , 2.49 , 7.9 ), showLights);
 	
-	generateWindowLight("windowLight2"
-	 , render
-	 , LVecBase3
-	 (3.5
-	  , 1.49
-	  , 4.5
-	 )
-	 , showLights
-	);
+	generateWindowLight("windowLight2", render, LVecBase3(3.5, 1.49, 4.5), showLights);
 }
 
 void generateWindowLight(std::string name, NodePath render, LVecBase3 position, bool show)
@@ -1941,10 +1868,7 @@ float animateLights(NodePath render
  , bool middayDown
  , bool midnightDown)
 {
-	auto clamp =[](float a
-	 , float mn
-	 , float mx
-	) -> float
+	auto clamp =[](float a, float mn, float mx) -> float
 	{
 		if (a > mx) { a = mx; }
 		if (a < mn) { a = mn; }
@@ -2013,8 +1937,7 @@ float animateLights(NodePath render
 	auto updateWindowLight =[&](std::string name) -> void
 	{
 		NodePath windowLightNP = render.find("**/" + name);
-		PT(Spotlight)
-		windowLight = DCAST(Spotlight, windowLightNP.node());
+		PT(Spotlight)windowLight = DCAST(Spotlight, windowLightNP.node());
 
 		float windowLightMagnitude = pow(nightTimeLightMagnitude, 0.4);
 
@@ -2054,10 +1977,9 @@ float animateLights(NodePath render
 
 PT (Shader) loadShader(std::string vert, std::string frag)
 {
-	return Shader::load
-	(Shader::SL_GLSL
-	 , "shaders/vertex/" + vert + ".vert"
-	 , "shaders/fragment/" + frag + ".frag"
+	return Shader::load(Shader::SL_GLSL,
+		 "shaders/vertex/" + vert + ".vert",
+		 "shaders/fragment/" + frag + ".frag"
 	);
 }
 
@@ -2101,9 +2023,7 @@ PTA_LVecBase3f generateSsaoNoise(int numberOfNoise)
 
 	for (int i = 0; i < numberOfNoise; ++i)
 	{
-		LVecBase3f noise =
-			LVecBase3f
-			(randomFloats(generator) * 2.0 - 1.0
+		LVecBase3f noise =VecBase3f(randomFloats(generator) * 2.0 - 1.0
 			 , randomFloats(generator) * 2.0 - 1.0
 			 , 0.0
 			);
@@ -2131,22 +2051,14 @@ FramebufferTexture generateFramebufferTexture(FramebufferTextureArguments frameb
 
 	FrameBufferProperties fbp = FrameBufferProperties::get_default();
 	fbp.set_back_buffers(0);
-	fbp.set_rgba_bits
-	(rgbaBits[0]
-	 , rgbaBits[1]
-	 , rgbaBits[2]
-	 , rgbaBits[3]
-	);
+	fbp.set_rgba_bits(rgbaBits[0], rgbaBits[1], rgbaBits[2], rgbaBits[3]);
 	fbp.set_aux_rgba(aux_rgba);
 	fbp.set_float_color(setFloatColor);
 	fbp.set_srgb_color(setSrgbColor);
 	fbp.set_rgb_color(setRgbColor);
 
 	PT(GraphicsOutput)
-	buffer =
-		graphicsEngine
-		->make_output
-		(graphicsOutput->get_pipe()
+	buffer =graphicsEngine->make_output(graphicsOutput->get_pipe()
 		 , name + "Buffer"
 		 , BACKGROUND_RENDER_SORT_ORDER - 1
 		 , fbp
@@ -2159,16 +2071,11 @@ FramebufferTexture generateFramebufferTexture(FramebufferTextureArguments frameb
 		 , graphicsOutput->get_gsg()
 		 , graphicsOutput->get_host()
 		);
-	buffer->add_render_texture
-	(NULL
-	 , GraphicsOutput::RTM_bind_or_copy
-	 , bitplane
-	);
+	buffer->add_render_texture(NULL, GraphicsOutput::RTM_bind_or_copy, bitplane);
 	buffer->set_clear_color(clearColor);
 
 	NodePath cameraNP = NodePath("");
-	PT(Camera)
-	camera = NULL;
+	PT(Camera)camera = NULL;
 
 	if (useScene)
 	{
@@ -2188,8 +2095,7 @@ FramebufferTexture generateFramebufferTexture(FramebufferTextureArguments frameb
 	}
 
 	PT(DisplayRegion)
-	bufferRegion =
-		buffer->make_display_region(0, 1, 0, 1);
+	bufferRegion =buffer->make_display_region(0, 1, 0, 1);
 	bufferRegion->set_camera(cameraNP);
 
 	NodePath shaderNP = NodePath(name + "Shader");
@@ -2248,8 +2154,7 @@ void hideBuffer(NodePath render2d)
 
 int microsecondsSinceEpoch()
 {
-	return std::chrono::duration_cast
-		<std::chrono::microseconds>
+	return std::chrono::duration_cast<std::chrono::microseconds>
 		(std::chrono::system_clock::now().time_since_epoch()
 		).count();
 }
@@ -2294,8 +2199,7 @@ void updateAudoManager(NodePath sceneRootNP,NodePath cameraNP)
 	LVector3f v = LVector3f(0, 0, 0);
 	LVector3f p = cameraNP.get_pos(sceneRootNP);
 
-	audioManager->audio_3d_set_listener_attributes
-	(p[0], p[1], p[2]
+	audioManager->audio_3d_set_listener_attributes(p[0], p[1], p[2]
 	 , v[0], v[1], v[2]
 	 , f[0], f[1], f[2]
 	 , u[0], u[1], u[2]
@@ -2361,8 +2265,7 @@ NodePath setUpParticles(NodePath render, PT (Texture) smokeTexture)
 	smokeSPR->set_nonanimated_theta(209.0546);
 	smokeSPR->set_alpha_blend_method(BaseParticleRenderer::PP_BLEND_CUBIC);
 	smokeSPR->set_alpha_disable(false);
-	smokeSPR->get_color_interpolation_manager()->add_linear
-	(0.0
+	smokeSPR->get_color_interpolation_manager()->add_linear(0.0
 	 , 1.0
 	 , LColor(1.0, 1.0, 1.0, 1.0)
 	 , LColor(0.039, 0.078, 0.156, 1.0)

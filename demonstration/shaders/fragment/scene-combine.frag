@@ -28,29 +28,13 @@ void main() {
        backgroundColor0.rgb = pow(backgroundColor0.rgb, vec3(gamma.x));
        backgroundColor1.rgb = pow(backgroundColor1.rgb, vec3(gamma.x));
 
-  float random =
-    fract
-      ( 10000
-      * sin
-          (
-            ( gl_FragCoord.x
-            * 104729
-            + gl_FragCoord.y
-            * 7639
-            )
-          * pi.y
-          )
-      );
+  float random =fract( 10000* sin(( gl_FragCoord.x* 104729+ gl_FragCoord.y* 7639)* pi.y));
 
   float sunPosition = sin(sunPosition.x * pi.y);
         sunPosition = max(0.2, -1 * sunPosition);
 
-  vec4 backgroundColor =
-    mix
-      ( backgroundColor0
-      , backgroundColor1
-      , 1.0 - clamp(random * 0.1 + texCoord.y, 0.0, 1.0)
-      );
+  vec4 backgroundColor =mix( backgroundColor0, backgroundColor1,
+       1.0 - clamp(random * 0.1 + texCoord.y, 0.0, 1.0));
 
   backgroundColor.rgb *= sunPosition;
   backgroundColor.b    = mix(backgroundColor.b + 0.05, backgroundColor.b, sunPosition);
@@ -62,13 +46,5 @@ void main() {
   fragColor     = baseColor;
   fragColor     = fragColor + bloomColor;
   fragColor     = mix(fragColor, fogColor, min(fogColor.a, 1));
-  fragColor     =
-    vec4
-      ( mix
-          ( backgroundColor.rgb
-          , fragColor.rgb
-          , min(baseColor.a + fogColor.a, 1)
-          )
-      , 1
-      );
+  fragColor     =vec4( mix( backgroundColor.rgb, fragColor.rgb, min(baseColor.a + fogColor.a, 1)), 1);
 }

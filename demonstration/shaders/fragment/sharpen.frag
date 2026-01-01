@@ -24,19 +24,11 @@ void main() {
   float center   = amount *  4.0 + 1.0;
 
   vec3 color =
-        texture(colorTexture, (fragCoord + vec2( 0,  1)) / texSize).rgb
-      * neighbor
-
-      + texture(colorTexture, (fragCoord + vec2(-1,  0)) / texSize).rgb
-      * neighbor
-      + texture(colorTexture, (fragCoord + vec2( 0,  0)) / texSize).rgb
-      * center
-      + texture(colorTexture, (fragCoord + vec2( 1,  0)) / texSize).rgb
-      * neighbor
-
-      + texture(colorTexture, (fragCoord + vec2( 0, -1)) / texSize).rgb
-      * neighbor
-      ;
+        texture(colorTexture, (fragCoord + vec2( 0,  1)) / texSize).rgb* neighbor
+      + texture(colorTexture, (fragCoord + vec2(-1,  0)) / texSize).rgb* neighbor
+      + texture(colorTexture, (fragCoord + vec2( 0,  0)) / texSize).rgb* center
+      + texture(colorTexture, (fragCoord + vec2( 1,  0)) / texSize).rgb* neighbor
+      + texture(colorTexture, (fragCoord + vec2( 0, -1)) / texSize).rgb* neighbor;
 
   fragColor = vec4(color, texture(colorTexture, texCoord).a);
 }

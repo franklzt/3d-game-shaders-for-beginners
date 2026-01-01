@@ -16,9 +16,5 @@ uniform struct
 out vec4 fragColor;
 
 void main() {
-  fragColor =
-    vec4
-      ( p3d_Material.specular
-      , clamp(p3d_Material.shininess / MAX_SHININESS, 0.0, 1.0)
-      );
+  fragColor =vec4( p3d_Material.specular, clamp(p3d_Material.shininess / MAX_SHININESS, 0.0, 1.0));
 }
