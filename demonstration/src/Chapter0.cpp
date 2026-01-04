@@ -109,8 +109,8 @@ PT(Shader) loadShader
 {
     return Shader::load
     (Shader::SL_GLSL
-     , "../shaders/vertex/" + vert + ".vert"
-     , "../shaders/fragment/" + frag + ".frag"
+     , "shaders/vertex/" + vert + ".vert"
+     , "shaders/fragment/" + frag + ".frag"
     );
 }
 

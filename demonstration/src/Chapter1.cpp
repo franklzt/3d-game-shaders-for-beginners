@@ -109,8 +109,8 @@ PT(Shader) loadShader
 {
     return Shader::load
     (Shader::SL_GLSL
-     , "../shaders/vertex/" + vert + ".vert"
-     , "../shaders/fragment/" + frag + ".frag"
+     , "shaders/vertex/" + vert + ".vert"
+     , "shaders/fragment/" + frag + ".frag"
     );
 }
 
@@ -163,9 +163,6 @@ OutShader GetModifyTexture();
 
 int main(int argc, char* argv[])
 {
-
-    
-    
     LColor backgroundColor[] = {
         LColor(0.392, 0.537, 0.561, 1),
         LColor(0.953, 0.733, 0.525, 1)
@@ -283,8 +280,6 @@ int main(int argc, char* argv[])
     then = now;
 
     double movement = 100 * delta;
-
-
     PT(Camera) mainCamera = window->get_camera(0);
     PT(Lens) mainLens = mainCamera->get_lens();
     mainLens->set_fov(cameraFov);

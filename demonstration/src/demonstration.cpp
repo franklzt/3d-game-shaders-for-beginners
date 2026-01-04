@@ -111,8 +111,7 @@ void setSoundState(PT(AudioSound) sound, bool on);
 
 void updateAudoManager(NodePath sceneRootNP, NodePath cameraNP);
 
-LVecBase3f calculateCameraPosition
-(double radius, double phi, double theta, LVecBase3 cameraLookAt);
+LVecBase3f calculateCameraPosition(double radius, double phi, double theta, LVecBase3 cameraLookAt);
 
 LVecBase3f calculateCameraLookAt(double upDownAdjust, double leftRightAdjust, double phi, double theta,
 								 LVecBase3 lookAt);
@@ -1607,15 +1606,12 @@ int main(int argc, char* argv[])
 											 , cameraLeftRightAdjust
 											 , cameraRotatePhi
 											 , cameraRotateTheta
-											 , cameraLookAt
-		);
+											 , cameraLookAt);
 
 		cameraNP.set_pos(calculateCameraPosition(cameraRotateRadius
 												 , cameraRotatePhi
 												 , cameraRotateTheta
-												 , cameraLookAt
-			)
-		);
+												 , cameraLookAt));
 
 		cameraNP.look_at(cameraLookAt);
 
